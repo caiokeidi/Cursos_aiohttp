@@ -12,3 +12,5 @@ A escola em questão é totalmente fictícia, e a elaboração desse projeto vem
 - asyncpg
 > pip install asyncpg
 
+
+

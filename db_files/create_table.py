@@ -20,7 +20,8 @@ commands_table_cursos = (
             mensalidade DECIMAL(6,2),
             duracao VARCHAR(50),
             descricao VARCHAR(500),
-            data_inicio DATE NOT NULL
+            data_inicio DATE,
+            habilitado BOOLEAN
         )
         """)
 
