@@ -1,30 +1,30 @@
 from .connection import get_conn
 import datetime
 
-async def insert_curso(data):
+async def put_curso_db(data):
     conn = await get_conn()
 
     data = verif_boolean(data)
 
-    insercoes = await conn.execute("""
-        INSERT INTO cursos(
-            CURSO,
-            NOME,
-            MENSALIDADE, 
-            DURACAO,
-            DESCRICAO,
-            DATA_INICIO,
-            HABILITADO)
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
+    atualizacoes = await conn.execute(f"""
+        UPDATE cursos SET 
+            CURSO = $1,
+            NOME = $2,
+            MENSALIDADE = $3, 
+            DURACAO = $4,
+            DESCRICAO = $5,
+            DATA_INICIO = $6,
+            HABILITADO = $7 WHERE ID = $8
+            
         
     """, data['curso'], data['nome'],
     data['mensalidade'], data['duracao'],
     data['descricao'], get_data(data['data_inicio']),
-    data['habilitado'])
+    data['habilitado'], data['id'])
 
     await conn.close()
 
-    return insercoes
+    return atualizacoes
     
 
 def get_data(data):

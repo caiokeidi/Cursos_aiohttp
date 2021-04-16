@@ -6,3 +6,8 @@ async def get_cursos_db():
     infos = await conn.fetch('SELECT * FROM CURSOS')
     await conn.close()
     return infos
+
+async def get_curso_db(id):
+    conn = await get_conn()
+    curso = await conn.fetch(f'SELECT * FROM CURSOS WHERE ID = {id}')
+    return curso
