@@ -15,12 +15,10 @@ A escola em questão é totalmente fictícia, e a elaboração desse projeto vem
 ## Como Usar
 
 - Inserir novo Curso:
->POST
->Aceita JSON (Exemplo abaixo)
+>POST: Aceita JSON - 
 >http://localhost:8080/insere/curso
 
 >{
-        "id": 2,
         "curso": "CPB2",
         "nome": "Curso de Python Básico 2",
         "mensalidade": "120.00",
@@ -35,6 +33,25 @@ A escola em questão é totalmente fictícia, e a elaboração desse projeto vem
 >GET
 >http://localhost:8080/cursos
 
+- Para pegar apenas 1 curso específico pela ID:
+>GET
+>http://localhost:8080/curso/{id}
 
+- Para atualizar um curso específico:
+>PUT: Aceita JSON - Enviar id do curso -
+http://localhost:8080/atualiza/curso
 
+>{
+        "id": 2,
+        "curso": "CPB2",
+        "nome": "Curso de Python Básico 2",
+        "mensalidade": "120.00",
+        "duracao": "6 meses",
+        "descricao": "Lorem Ipsum, dolor ao simet, me forteri no dolor del le ipsum met",
+        "data_inicio": "2021-07-01",
+        "habilitado": null
+    }
 
+- Para deletar curso específico pelo ID:
+>DELETE
+>http://localhost:8080/deleta/curso/{id}
