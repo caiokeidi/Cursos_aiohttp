@@ -1,5 +1,5 @@
 from aiohttp import web
-from db_files.get_db import get_cursos_db, get_curso_db
+from db_files.get_db import get_cursos_db, get_curso_db, get_cursos_nome_db
 import json
 
 async def get_index(request):
@@ -21,3 +21,8 @@ async def get_curso(request):
     curso = await get_curso_db(id)
     json_infos = json.dumps(dict(curso[0]), default=str)
     return web.json_response(json_infos, content_type='application/json')
+
+async def get_cursos_nome(request):
+    nome = request.match_info['nome']
+    cursos = await get_cursos_nome_db(nome)
+    return web.Response(text=str(cursos))

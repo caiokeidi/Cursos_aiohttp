@@ -10,4 +10,11 @@ async def get_cursos_db():
 async def get_curso_db(id):
     conn = await get_conn()
     curso = await conn.fetch(f'SELECT * FROM CURSOS WHERE ID = {id}')
+    await conn.close()
     return curso
+
+async def get_cursos_nome_db(nome):
+    conn = await get_conn()
+    cursos = await conn.fetch(f"""SELECT * FROM CURSOS WHERE UPPER(NOME) LIKE UPPER('%{nome}%')""")
+    await conn.close()
+    return cursos
